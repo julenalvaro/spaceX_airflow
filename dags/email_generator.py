@@ -4,15 +4,17 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
 
-password = 'foycucgpekfbsgek'
-remitente = "julenalvaro2@gmail.com"
+#Inroducir aquí la contraseña de la cuenta de correo que se usará para enviar los correos electrónicos
+password = 'XXXXXXXXXXXXX'
+remitente = 'XXXXXX@mail.com'
+destinatario_marketing = "YYYYYYYY@mail.com"
+destinatario_analytics = "ZZZZZZZZ@mail.com"
 
-def send_email_marketing(password=password, remitente=remitente, **context):
+def send_email_marketing(password=password, remitente=remitente, destinatario = destinatario_marketing, **context):
 
     filepath1 = '/tmp/spaceX_data/history_' + context['ds_nodash'] + '_' + context['execution_date'].strftime('%H%M%S') + '.json'
 
     # Configurar los parámetros del correo
-    destinatario = "platzi-marketing@mail.com"
     asunto = "Noticias de SpaceX listas"
     cuerpo = f"""\
             Estimado equipo de marketing,
@@ -49,7 +51,7 @@ def send_email_marketing(password=password, remitente=remitente, **context):
     servidor_smtp.sendmail(remitente, destinatario, mensaje.as_string())
     servidor_smtp.quit()
 
-def send_email_data_team(password=password, remitente=remitente, **context):
+def send_email_data_team(password=password, remitente=remitente, destinatario = destinatario_analytics, **context):
 
     filepath1 = '/tmp/platzi_data/platzi_data_' + context['ds_nodash'] + '_' + context['execution_date'].strftime('%H%M%S') + '.csv'
 
